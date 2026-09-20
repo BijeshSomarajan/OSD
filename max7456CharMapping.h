@@ -8,6 +8,7 @@
 #define FONT_SEGMENT_LARGE   0x03
 #define FONT_SEGMENT_SMALL   0x04
 
+#define CHAT_SMALL_T   0x42
 #define SYMBOL_SLASH         0x4b
 #define SYMBOL_PERCLARGE     0x4c
 #define SYMBOL_DEGREE        0x4d

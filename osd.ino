@@ -4,8 +4,9 @@ TelemetryData telemetry;
 #define MAX_LINE_LENGTH 100
 #define HORIZON_HALF_WIDTH 4
 #define HORIZON_PITCH_SCALE 0.5f
-#define HORIZON_ROLL_ASPECT 5.0f
+#define HORIZON_ROLL_ASPECT 2.5f
 
+#define FIXED_REF_HALF_GAP 1  // columns beyond the moving horizon's outer edge
 #define HORIZON_CENTER_COL_OFFSET -3
 #define VERTICAL_CENTER_COL_OFFSET -2
 #define COL_PADDING_RIGHT 3
@@ -129,15 +130,14 @@ void displayGNSSInfo() {
   }
 }
 
-
 void displayDistance() {
   displayValueAtLeft(SCREEN_ROWS - 6, telemetry.homeDistance, 0, SYMBOL_DIST);
-  displayValueAtLeft(SCREEN_ROWS - 7, telemetry.groundSpeed, 1, SYMBOL_MPS);
+  displayValueAtLeft(SCREEN_ROWS - 7, telemetry.alt, 1, SYMBOL_ALT);
 }
 
 void displayAltitude() {
-  displayValueAtRight(SCREEN_ROWS - 6, telemetry.alt, 1, SYMBOL_ALT);
-  displayValueAtRight(SCREEN_ROWS - 7, telemetry.verticalSpeed, 1, SYMBOL_MPS);
+  displayValueAtRight(SCREEN_ROWS - 6, telemetry.groundSpeed, 1, SYMBOL_SPD); // This is the current speed
+  displayValueAtRight(SCREEN_ROWS - 7, telemetry.verticalSpeed, 1, CHAT_SMALL_T); // This is the target speed
 }
 
 uint8_t getRotationSymbol(float angleDegrees) {
@@ -163,7 +163,7 @@ void displayThrottle() {
   printNumericValue(0, SCREEN_ROWS - 14, telemetry.throttle, 0, SYMBOL_POWER, FONT_SEGMENT_SMALL);
 }
 
-#define FIXED_REF_HALF_GAP 1  // columns beyond the moving horizon's outer edge
+
 
 void displayHorizon() {
   int16_t centerCol = (SCREEN_COLS / 2) + SCREEN_COL_ADJUST + HORIZON_CENTER_COL_OFFSET;
